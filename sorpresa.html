@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para TI PRECIOSA 💛</title>
+    <!-- Cargamos Tailwind para la estructura y fuentes hermosas de Google Fonts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(-45deg, #192a56, #e84393, #fd79a8, #fbc531);
+            background-size: 400% 400%;
+            animation: gradientBG 12s ease infinite;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Animación fluida del fondo de colores */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .glowing-btn {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            color: white;
+            padding: 1rem 2.5rem;
+            font-size: 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4), inset 0 0 10px rgba(255, 255, 255, 0.2);
+            animation: pulseGlow 2s infinite;
+            transition: all 0.3s ease;
+            z-index: 50;
+        }
+
+        .glowing-btn:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.6), inset 0 0 15px rgba(255, 255, 255, 0.4);
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.4); }
+            50% { box-shadow: 0 0 40px rgba(255, 215, 0, 0.8), 0 0 20px rgba(255, 105, 180, 0.6); transform: scale(1.02); }
+            100% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.4); }
+        }
+
+        .message-container {
+            opacity: 0;
+            transform: translateY(40px) scale(0.95);
+            transition: all 2s cubic-bezier(0.23, 1, 0.32, 1);
+            z-index: 40;
+            text-align: center;
+            pointer-events: none; /* Para que las flores pasen por encima o debajo sin estorbar */
+            width: 90%;
+            max-width: 800px;
+        }
+
+        .message-container.show {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .message-text {
+            color: #ffffff;
+            font-size: 1.5rem;
+            line-height: 1.6;
+            font-weight: 600;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 20, 147, 0.8), 0 0 30px rgba(255, 192, 203, 0.6);
+        }
+
+        @media (min-width: 768px) {
+            .message-text { font-size: 2.2rem; line-height: 1.8; }
+        }
+
+        .sunflower-rain {
+            position: absolute;
+            top: -10%;
+            z-index: 10;
+            animation: fall linear forwards;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-5vh) rotate(0deg) scale(0.8); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(105vh) rotate(360deg) scale(1.2); opacity: 0; }
+        }
+
+        .flower-floor {
+            position: absolute;
+            bottom: -20vh; /* Oculto inicialmente */
+            left: 0;
+            width: 100%;
+            height: 15vh;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-end;
+            z-index: 20;
+            transition: bottom 2.5s cubic-bezier(0.25, 1, 0.5, 1);
+            overflow: hidden;
+            mask-image: linear-gradient(to top, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 100%);
+            -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 100%);
+        }
+
+        .flower-floor.show {
+            bottom: -2vh; /* Sube y se muestra */
+        }
+
+        .floor-flower {
+            font-size: 3rem;
+            margin: -10px;
+            opacity: 0;
+            transform: translateY(50px) scale(0);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .floor-flower.bloom {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Botón Inicial -->
+    <div id="btn-wrapper" class="absolute inset-0 flex justify-center items-center z-50 transition-opacity duration-1000">
+        <button id="surprise-btn" class="glowing-btn">
+            Toca aquí para tu sorpresa ✨
+        </button>
+    </div>
+
+    <!-- Mensaje Romántico -->
+    <div id="message-container" class="message-container absolute">
+        <p class="message-text">
+            Estas flores son para ti, 💛<br>
+            por ser parte de mi vida y de hermosos<br>
+            e increíbles recuerdos. 🌻<br>
+            Te tengo un espacio enorme en mi corazón. 💛<br>
+                   </p>
+    </div>
+
+    <!-- Contenedor de la Lluvia -->
+    <div id="rain-container" class="absolute inset-0 overflow-hidden pointer-events-none"></div>
+
+    <!-- Contenedor del Suelo de Flores -->
+    <div id="flower-floor" class="flower-floor pointer-events-none"></div>
+
+    <script>
+        const btnWrapper = document.getElementById('btn-wrapper');
+        const btn = document.getElementById('surprise-btn');
+        const message = document.getElementById('message-container');
+        const rainContainer = document.getElementById('rain-container');
+        const flowerFloor = document.getElementById('flower-floor');
+
+        let isRaining = false;
+
+        // Función para crear gotas de girasoles (lluvia)
+        function createRaindrop() {
+            if (!isRaining) return;
+
+            const flower = document.createElement('div');
+            flower.innerText = '🌻';
+            flower.classList.add('sunflower-rain');
+            
+            // Posición aleatoria horizontal
+            flower.style.left = Math.random() * 100 + 'vw';
+            
+            // Tamaño aleatorio para dar profundidad
+            const size = Math.random() * 2 + 1; // Entre 1rem y 3rem
+            flower.style.fontSize = size + 'rem';
+            
+            // Velocidad aleatoria
+            const duration = Math.random() * 3 + 3; // Entre 3s y 6s
+            flower.style.animationDuration = duration + 's';
+            
+            rainContainer.appendChild(flower);
+
+            // Limpiar el DOM para no saturar la memoria
+            setTimeout(() => {
+                flower.remove();
+            }, duration * 1000);
+        }
+
+        // Función para poblar el suelo
+        function createFloor() {
+            // Cantidad de flores para el suelo basada en el ancho de la pantalla
+            const amount = Math.floor(window.innerWidth / 20); 
+            
+            for (let i = 0; i < amount * 2; i++) {
+                const flower = document.createElement('div');
+                // Mezclamos un poco con brillos y corazones amarillos para que no sea plano
+                const emojis = ['🌻', '🌻', '🌻', '💛', '✨'];
+                flower.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+                flower.classList.add('floor-flower');
+                
+                // Rotaciones aleatorias para que parezcan naturales
+                const rotation = Math.random() * 60 - 30;
+                // Tamaños ligeramente diferentes
+                const scale = Math.random() * 0.5 + 0.8;
+                
+                // Guardamos los valores para aplicarlos en la animación de "floración" (bloom)
+                flower.dataset.rotation = rotation;
+                flower.dataset.scale = scale;
+                flower.style.transform = `translateY(50px) rotate(${rotation}deg) scale(0)`;
+
+                flowerFloor.appendChild(flower);
+            }
+        }
+
+        // Función para hacer que florezca el suelo escalonadamente
+        function bloomFloor() {
+            const flowers = document.querySelectorAll('.floor-flower');
+            flowers.forEach((flower, index) => {
+                setTimeout(() => {
+                    flower.classList.add('bloom');
+                    flower.style.transform = `translateY(0) rotate(${flower.dataset.rotation}deg) scale(${flower.dataset.scale})`;
+                }, index * 50); // Retraso escalonado para efecto de crecimiento
+            });
+        }
+
+        // Evento principal
+        btn.addEventListener('click', () => {
+            // 1. Ocultar botón
+            btnWrapper.style.opacity = '0';
+            setTimeout(() => {
+                btnWrapper.style.display = 'none';
+            }, 1000);
+
+            // 2. Mostrar el mensaje subiendo
+            setTimeout(() => {
+                message.classList.add('show');
+            }, 500);
+
+            // 3. Iniciar lluvia densa
+            isRaining = true;
+            // Generar una flor cada 80ms para una lluvia abundante
+            setInterval(createRaindrop, 80);
+
+            // 4. Preparar y subir el suelo
+            createFloor();
+            setTimeout(() => {
+                flowerFloor.classList.add('show');
+                // Hacer que florezcan una vez que el contenedor subió un poco
+                setTimeout(bloomFloor, 1000);
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
